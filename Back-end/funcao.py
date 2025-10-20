@@ -65,6 +65,21 @@ def atualizar_produtos(id_produtos, nova_quantidade):
             cursor.close()
             conexao.close()
 
+def atualizar_preco(id_produtos, nova_preco):
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute(
+                "UPDATE produtos SET preco = %s WHERE id = %s",
+                (id_produtos, nova_preco)
+            )
+            conexao.commit()
+        except Exception as erro:
+            print(f"Erro ao tentar atuaizar o produtos {erro}")
+        finally:
+            cursor.close()
+            conexao.close()
+
 def deletar_filmes(id_produtos):
     conexao, cursor = conectar()
     if conexao:
