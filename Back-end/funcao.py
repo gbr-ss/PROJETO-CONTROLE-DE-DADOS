@@ -56,7 +56,7 @@ def atualizar_produtos(id_produtos, nova_quantidade):
         try:
             cursor.execute(
                 "UPDATE produtos SET quantidade = %s WHERE id = %s",
-                (id_produtos, nova_quantidade)
+                (nova_quantidade, id_produtos)
             )
             conexao.commit()
         except Exception as erro:
@@ -71,7 +71,7 @@ def atualizar_preco(id_produtos, nova_preco):
         try:
             cursor.execute(
                 "UPDATE produtos SET preco = %s WHERE id = %s",
-                (id_produtos, nova_preco)
+                (nova_preco, id_produtos)
             )
             conexao.commit()
         except Exception as erro:

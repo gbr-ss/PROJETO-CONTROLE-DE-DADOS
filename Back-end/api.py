@@ -34,11 +34,11 @@ def atualizar_produtos(id_produtos: int,nova_quantidade:float):
     else:
         return {"erro": "Produto não encontrado"}
     
-@app.put("/produtos/{id_produto}/preco")
-def atualizar_preco(id_produtos: int,novo_preco:float):
+@app.put("/produtos/{id_produtos}/preco")
+def atualizar_produtos(id_produtos: int,nova_preco:float):
     produtos = funcao.buscar_produtos(id_produtos)
     if produtos:
-        funcao.atualizar_preco(id_produtos, novo_preco)
+        funcao.atualizar_preco(id_produtos, nova_preco)
         return{"mensagem": "Produto atualizado com sucesso!"}
     else:
         return {"erro": "Produto não encontrado"}
