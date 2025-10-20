@@ -33,3 +33,12 @@ def atulizar_produtos(id_produtos: int,nova_avalicao:float):
         return{"mensagem": "Produto atualizado com sucesso!"}
     else:
         return {"erro": "Produto não encontrado"}
+    
+@app.put("/produtos/{id_preco}")
+def atulizar_preco(id_preco: int,nova_avalicao:float):
+    produtos = funcao.buscar_produtos(id_preco)
+    if produtos:
+        funcao.atualizar_produtos(id_preco, nova_avalicao)
+        return{"mensagem": "Produto atualizado com sucesso!"}
+    else:
+        return {"erro": "Produto não encontrado"}
