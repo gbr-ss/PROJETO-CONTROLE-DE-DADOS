@@ -44,5 +44,5 @@ def atulizar_preco(id_produtos: int,novo_preco:float):
         return {"erro": "Produto não encontrado"}
 @app.delete("/estoque")
 def deletar_produtos(id: int):
-    funcao.deletar_produtos(id):
+    funcao.deletar_produtos(id)
     return {"mensagem": "Produto Deletado com Sucesso"}
