@@ -27,7 +27,7 @@ elif menu == "Adicionar produtos":
     nome = st.text_input("Nome do produtos")
     categoria = st.text_input("Categoria do produtos")
     preco = st.number_input("Preço de Lançamento", min_value=0, step=1)
-    quantidade=st.number_input("Quantidade ", min_value=0,step=1.0)
+    quantidade=st.number_input("Quantidade ", min_value=0.0,step=1.0)
     if st.button("Salvar produtos"):
         dados = {"Nome": nome,"Categoria":categoria,"Preço":preco,"avalicao":quantidade}
         response = requests.post(f"{API_URL}/produtos",params=dados)
