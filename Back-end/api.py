@@ -26,7 +26,7 @@ def listar_produtos():
     return{"produtos": lista}
 
 @app.put("/produtos/{id_produtos}/quantidade")
-def atulizar_produtos(id_produtos: int,nova_quantidade:float):
+def atualizar_produtos(id_produtos: int,nova_quantidade:float):
     produtos = funcao.buscar_produtos(id_produtos)
     if produtos:
         funcao.atualizar_produtos(id_produtos, nova_quantidade)
@@ -35,7 +35,7 @@ def atulizar_produtos(id_produtos: int,nova_quantidade:float):
         return {"erro": "Produto não encontrado"}
     
 @app.put("/produtos/{id_produto}/preco")
-def atulizar_preco(id_produtos: int,novo_preco:float):
+def atualizar_preco(id_produtos: int,novo_preco:float):
     produtos = funcao.buscar_produtos(id_produtos)
     if produtos:
         funcao.atualizar_preco(id_produtos, novo_preco)
