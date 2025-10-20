@@ -49,4 +49,14 @@ elif menu == "Atualizar produtos":
         else:
             st.error("Erro ao atualizar o produto. Verifique o ID e tente novamente.")
 elif menu == "Deletar":
-    st.subheader("❌")
+    st.subheader("❌ Deletar algum objeto")
+    id_produto = st.number_input("ID do produto", min_value=1, step=1)
+    if st.button("Deletar"):
+        url = f"http://127.0.0.1:8000/estoque/{id_produto}"
+        response = requests.delete(url)
+        if response.status_code == 200:
+            st.success("Produto deletado com sucesso!")
+        elif response.status_code == 404:
+            st.error("Produto não encontrado.")
+        else:
+            st.error("Erro ao deletar")
