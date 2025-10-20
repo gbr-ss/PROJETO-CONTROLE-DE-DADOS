@@ -10,7 +10,7 @@ st.set_page_config(page_title="Gerenciador de Produtos",page_icon="📦")
 st.title("📦Gerenciador de produtos")
 
 #Menu lateral
-menu = st.sidebar.radio("Navegação", ["Catalogo", "Adicionar produtos"])
+menu = st.sidebar.radio("Navegação", ["Catalogo", "Adicionar produtos",""])
 if menu == "Catalogo":
     st.subheader("Todos os produtos disponiveis")
     response = requests.get(f"{API_URL}/produtos")
