@@ -9,7 +9,7 @@ st.set_page_config(page_title="Gerenciador de Produtos",page_icon="📦")
 st.title("📦Gerenciador de produtos")
 
 #Menu lateral
-menu = st.sidebar.radio("Navegação", ["Catalogo", "Adicionar produtos","Atualizar produtos"])
+menu = st.sidebar.radio("Navegação", ["Catalogo", "Adicionar produtos","Atualizar produtos","Deletar"])
 if menu == "Catalogo":
     st.subheader("Todos os produtos disponiveis")
     response = requests.get(f"{API_URL}/produtos")
@@ -41,4 +41,12 @@ elif menu == "Atualizar produtos":
     novo_preco = st.number_input("Novo preço", min_value=0.0, step=0.1)
     nova_quantidade = st.number_input("Nova quantidade ", min_value=0, step=1)
     if st.button("Atualizar o produto"):
-        url_preco = f"http://127.0.0.1:8000/produtos/{id_produto}"
+        url_base = "http://localhost:8000/produtos"
+        response_preco = requests.put(f"{url_base}/{id_produto}/preco", params={"nova_preco": novo_preco})
+        response_quantidade = requests.put(f"{url_base}/{id_produto}/quantidade", params={"nova_quantidade": nova_quantidade})
+        if response_preco.status_code == 200 and response_quantidade.status_code == 200:
+            st.success("Produto atualizado com sucesso!")
+        else:
+            st.error("Erro ao atualizar o produto. Verifique o ID e tente novamente.")
+elif menu == "Deletar":
+    st.subheader("❌")
