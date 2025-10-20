@@ -24,3 +24,12 @@ def listar_produtos():
             "quantidade":linha[4]
             })
     return{"produtos": lista}
+
+@app.put("/produtos/{id_produtos}")
+def atulizar_produtos(id_produtos: int,nova_avalicao:float):
+    produtos = funcao.buscar_produtos(id_produtos)
+    if produtos:
+        funcao.atualizar_produtos(id_produtos, nova_avalicao)
+        return{"mensagem": "Produto atualizado com sucesso!"}
+    else:
+        return {"erro": "Produto não encontrado"}
