@@ -24,6 +24,10 @@ def listar_produtos():
             "quantidade":linha[4]
             })
     return{"produtos": lista}
+@app.get("/produtos/quantidade_max")
+def max_produtos():
+    produtos = funcao.max_produtos()
+    return {"produtos": produtos}   
 
 @app.put("/produtos/{id_produtos}/quantidade")
 def atualizar_produtos(id_produtos: int,nova_quantidade:float):

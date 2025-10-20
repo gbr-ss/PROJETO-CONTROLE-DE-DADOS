@@ -11,7 +11,11 @@ st.title("📦Gerenciador de produtos")
 #Menu lateral
 menu = st.sidebar.radio("Navegação", ["Catalogo", "Adicionar produtos","Atualizar produtos","Deletar"])
 if menu == "Catalogo":
+    response_max_produtos = requests.get(f"http://127.0.0.1:8000/produtos/quantidade_max")
+    qtd = response_max_produtos.json().get("produtos",[])
+
     st.subheader("Todos os produtos disponiveis")
+    st.markdown(qtd[0])
     response = requests.get(f"{API_URL}/produtos")
     if response.status_code == 200:
         produtos = response.json().get("produtos",[])
@@ -52,7 +56,7 @@ elif menu == "Deletar":
     st.subheader("❌ Deletar algum objeto")
     id_produto = st.number_input("ID do produto", min_value=1, step=1)
     if st.button("Deletar"):
-        url = f"http://127.0.0.1:8000/estoque/{id_produto}"
+        url = f"http://127.0.0.1:8000/estoque?id={id_produto}"
         response = requests.delete(url)
         if response.status_code == 200:
             st.success("Produto deletado com sucesso!")

@@ -106,3 +106,16 @@ def buscar_produtos(id_produtos):
         finally:
             cursor.close()
             conexao.close()
+def max_produtos():
+    conexao, cursor = conectar()
+    try:
+        cursor.execute("""
+        SELECT COUNT(*) FROM produtos;
+        """)
+        return cursor.fetchone()
+    except Exception as erro:
+        print(f"Erro ao mostrar a quantidade de produtos")
+    finally:
+        cursor.close()
+        conexao.close()
+print(max_produtos())
