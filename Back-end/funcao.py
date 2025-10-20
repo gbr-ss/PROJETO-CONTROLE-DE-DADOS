@@ -80,19 +80,20 @@ def atualizar_preco(id_produtos, nova_preco):
             cursor.close()
             conexao.close()
 
-def deletar_filmes(id_produtos):
+def deletar_produtos(id_produtos):
     conexao, cursor = conectar()
     if conexao:
         try:
-            cursor.execute("DELETE FROM produtos WHERE id = ?", (id_produtos,))
+            cursor.execute("DELETE FROM produtos WHERE id = %s", (id_produtos,))
             conexao.commit()
         except Exception as erro:
             print(f"Erro ao deletar o produtos ")
         finally:
             cursor.close()
             conexao.close()
+deletar_produtos(2)
 
-def buscar_filmes(id_produtos):    
+def buscar_produtos(id_produtos):    
     conexao, cursor = conectar()
     if conexao:
         try:
