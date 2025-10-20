@@ -25,20 +25,20 @@ def listar_produtos():
             })
     return{"produtos": lista}
 
-@app.put("/produtos/{id_produtos}")
-def atulizar_produtos(id_produtos: int,nova_avalicao:float):
+@app.put("/produtos/{id_produtos}/quantidade")
+def atulizar_produtos(id_produtos: int,nova_quantidade:float):
     produtos = funcao.buscar_produtos(id_produtos)
     if produtos:
-        funcao.atualizar_produtos(id_produtos, nova_avalicao)
+        funcao.atualizar_produtos(id_produtos, nova_quantidade)
         return{"mensagem": "Produto atualizado com sucesso!"}
     else:
         return {"erro": "Produto não encontrado"}
     
-@app.put("/produtos/{id_preco}")
-def atulizar_preco(id_preco: int,nova_avalicao:float):
-    produtos = funcao.buscar_produtos(id_preco)
+@app.put("/produtos/{id_produto}/preco")
+def atulizar_preco(id_produtos: int,novo_preco:float):
+    produtos = funcao.buscar_produtos(id_produtos)
     if produtos:
-        funcao.atualizar_produtos(id_preco, nova_avalicao)
+        funcao.atualizar_preco(id_produtos, novo_preco)
         return{"mensagem": "Produto atualizado com sucesso!"}
     else:
         return {"erro": "Produto não encontrado"}
