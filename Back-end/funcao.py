@@ -35,3 +35,17 @@ def inserir_produtos(nome, categoria, preco ,quantidade):
         finally:
             cursor.close()
             conexao.close()
+
+def exibir_produtos():
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute(
+                "SELECT * FROM produtos ORDER BY id"
+            )
+            return cursor.fetchall()
+        except Exception as erro:
+            print(f"Erro ao mostrar os produtos")
+        finally:
+            cursor.close()
+            conexao.close()
